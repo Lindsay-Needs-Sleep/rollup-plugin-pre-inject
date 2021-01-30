@@ -1,2 +1,2 @@
-const polyfill = require('./rollup-plugin-polyfill')
-module.exports = polyfill
+const preInject = require('./src/rollup-plugin-pre-inject.js');
+module.exports = preInject;

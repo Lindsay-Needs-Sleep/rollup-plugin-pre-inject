@@ -23,3 +23,15 @@ export default {
   ]
 }
 ```
+
+## example
+
+Check out the /example folder:
+* Look at `logAddFiveAndOne.js`
+* Look at options passed to the pre-inject plugin
+
+To see it in action, run:
+```
+npm install
+npm run example
+```

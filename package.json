@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-pre-inject",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "plugin to prepends bundles with custom code (can be used to inject anything)",
   "main": "index.js",
   "files": [

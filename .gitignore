@@ -1,3 +1,8 @@
 node_modules
 example/package-lock.json
 example/bundle.js
+
+package-lock.json
+
+out/
+test/out/

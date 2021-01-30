@@ -1,38 +1,21 @@
 const MagicString = require('magic-string');
 
-const methods = {
-  'import': pkg => `import "${pkg}";`,
-  'require': pkg => `require("${pkg}");`,
-};
-
-/**
- * rollup-plugin-polyfill
- * prepends entry files with a source file or module
- * @param packages - list of files or modules to import
- * @param options - configurations for the plugin,
- *  can set to use import or require statements,
- *  and to include sourceMap or not
- *
- * @see https://github.com/JRJurman/rollup-plugin-polyfill
- *
- */
-module.exports = (packages, {
+const preInject = ({
   sourceMap = true,
-  method = 'import',
+  injectCode = null,
 } = {}) => ({
-  name: 'polyfill',
+  name: 'pre-inject',
   transform: function(source, id) {
+    // Do nothing if nothing to inject
+    if(!injectCode) return null;
+
     // polyfills should go only on the top most files
     // so we only apply this transform to entries
     if (!this.getModuleInfo(id).isEntry) return null;
 
-    // create a new magic-string object to prepend our imports on
+    // create a new magic-string object to prepend our injectCode to
     const magicString = new MagicString(source);
-    magicString.prepend(
-      packages
-        .map(pkg => methods[method](pkg))
-        .join('\n') + '\n\n'
-    )
+    magicString.prepend(injectCode);
 
     return {
       code: magicString.toString(),
@@ -40,3 +23,8 @@ module.exports = (packages, {
     }
   }
 });
+
+// Add the utils to the export
+preInject.utils = require('./utils.js');
+
+module.exports = preInject;
