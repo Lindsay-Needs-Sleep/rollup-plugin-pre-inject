@@ -1,30 +1,43 @@
 {
-  "name": "rollup-plugin-polyfill",
+  "name": "rollup-plugin-pre-inject",
   "version": "3.0.0",
-  "description": "plugin to prepends bundles with a source file or module",
-  "main": "src/index.js",
-  "scripts": {},
+  "description": "plugin to prepends bundles with custom code (can be used to inject anything)",
+  "main": "index.js",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "precommit": "npm run test",
+    "prepublishOnly": "npm run test",
+    "test": "jest --runInBand",
+    "test:clearCache": "jest --clearCache",
+    "test:watch": "npm run test -- --watch"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JRJurman/rollup-plugin-polyfill.git"
+    "url": "git+https://github.com/Lindsay-Needs-Sleep/rollup-plugin-pre-inject.git"
   },
   "keywords": [
     "rollup-plugin"
   ],
   "author": {
-    "name": "Jesse Jurman",
-    "email": "j.r.jurman@gmail.com",
-    "url": "https://github.com/jrjurman"
+    "name": "Lindsay NeedsSleep",
+    "email": "lindsay-needs-sleep@outlook.com",
+    "url": "https://github.com/Lindsay-Needs-Sleep/"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/JRJurman/rollup-plugin-polyfill/issues"
+    "url": "https://github.com/Lindsay-Needs-Sleep/rollup-plugin-pre-inject/issues"
   },
-  "homepage": "https://github.com/JRJurman/rollup-plugin-polyfill#readme",
+  "homepage": "https://github.com/Lindsay-Needs-Sleep/rollup-plugin-pre-inject#readme",
   "dependencies": {
     "magic-string": "^0.25.3"
   },
   "devDependencies": {
-    "jest": "^24.8.0"
+    "@types/jest": "^25.2.3",
+    "flow-remove-types": "^2.142.0",
+    "jest": "^26.6.3",
+    "jest-extended": "^0.11.5",
+    "rollup": "^1.32.1"
   }
 }
